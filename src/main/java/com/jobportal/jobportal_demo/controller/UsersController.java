@@ -38,9 +38,9 @@ public class UsersController {
     }
 
     @PostMapping("/register/new")
-    public String userRegistration(@Valid Users users, Model model) {
+    public String userRegistration(Users users) {
         usersService.addNew(users);
-        return "redirect:/dashboard/";
+        return "redirect:/login/";
     }
 
     @GetMapping("/login")
