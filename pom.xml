@@ -11,7 +11,7 @@
 	<groupId>com.jobportal</groupId>
 	<artifactId>jobportal_demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<!-- <packaging>war</packaging> -->
 	<name>jobportal_demo</name>
 	<description>Job portal demo project</description>
 	<url/>
@@ -146,6 +146,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>jobportal</finalName>
 	</build>
 
 </project>
