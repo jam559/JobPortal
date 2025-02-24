@@ -1,5 +1,7 @@
 package com.jobportal.jobportal_demo.entity;
 
+import java.beans.Transient;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,4 +38,11 @@ public class RecruiterProfile {
     @JoinColumn(name = "userAccountId", referencedColumnName = "userId")
     @MapsId
     private Users user;
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePhoto == null) return null;
+        return "/photos/recruiter/" + userAccountId + "/" + profilePhoto;
+    }
+
 }
