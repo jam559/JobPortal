@@ -26,7 +26,6 @@ public class JobPostActivityService {
     }
 
     public List<RecruiterJobsDto> getRecruiterJobs(int recruiter){
-        
         List<IRecruiterJobs> recruiterJobsDtos = jobPostActivityRepository.getRecruiterJobs(recruiter);
         List<RecruiterJobsDto> recruiterJobsDtoList = new ArrayList<>();
         for (IRecruiterJobs rec : recruiterJobsDtos) {

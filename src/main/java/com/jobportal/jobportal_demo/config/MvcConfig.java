@@ -19,6 +19,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     private void exposeDirectory(String uploadDir, ResourceHandlerRegistry registry) {
         Path path = Paths.get(uploadDir);
+
+        String finalPath = "/" + uploadDir + "/**" + path.toAbsolutePath();
+        System.out.println("finalPath is: " + finalPath);
         registry.addResourceHandler("/" + uploadDir + "/**").addResourceLocations("file:" + path.toAbsolutePath() + "/");
     }
 
