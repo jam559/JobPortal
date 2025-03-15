@@ -3,7 +3,6 @@ package com.jobportal.jobportal_demo.config;
 import java.io.IOException;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 

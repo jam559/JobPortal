@@ -1,7 +1,5 @@
 package com.jobportal.jobportal_demo.entity;
 
-import java.io.Serializable;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,16 +8,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"userId", "job"})
-})
-public class JobSeekerSave implements Serializable {
+@Table
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class JobSeekerSave{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -30,45 +31,4 @@ public class JobSeekerSave implements Serializable {
     @JoinColumn(name = "job", referencedColumnName = "jobPostId")
     private JobPostActivity job;
 
-    public JobSeekerSave() {
-    }
-
-    public JobSeekerSave(Integer id, JobSeekerProfile userId, JobPostActivity job) {
-        this.id = id;
-        this.userId = userId;
-        this.job = job;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public JobSeekerProfile getUserId() {
-        return userId;
-    }
-
-    public void setUserId(JobSeekerProfile userId) {
-        this.userId = userId;
-    }
-
-    public JobPostActivity getJob() {
-        return job;
-    }
-
-    public void setJob(JobPostActivity job) {
-        this.job = job;
-    }
-
-    @Override
-    public String toString() {
-        return "JobSeekerSave{" +
-                "id=" + id +
-                ", userId=" + userId.toString() +
-                ", job=" + job.toString() +
-                '}';
-    }
 }

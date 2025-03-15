@@ -1,14 +1,14 @@
 package com.jobportal.jobportal_demo.entity;
 
-public interface IRecruiterJobs {
+public interface RecruiterJobsAccessor {
 
     Long getTotalCandidates();
 
-    int getJob_post_id();
+    Integer getJobPostId();
 
-    String getJob_title();
+    String getJobTitle();
 
-    int getLocationId();
+    Integer getLocationId();
 
     String getCity();
 
@@ -16,7 +16,7 @@ public interface IRecruiterJobs {
 
     String getCountry();
 
-    int getCompanyId();
+    Integer getCompanyId();
 
     String getName();
 }

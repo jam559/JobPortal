@@ -2,12 +2,10 @@ package com.jobportal.jobportal_demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
-
-import com.jobportal.jobportal_demo.entity.IRecruiterJobs;
+import com.jobportal.jobportal_demo.entity.RecruiterJobsAccessor;
 import com.jobportal.jobportal_demo.entity.JobCompany;
 import com.jobportal.jobportal_demo.entity.JobLocation;
 import com.jobportal.jobportal_demo.entity.JobPostActivity;
@@ -26,12 +24,12 @@ public class JobPostActivityService {
     }
 
     public List<RecruiterJobsDto> getRecruiterJobs(int recruiter){
-        List<IRecruiterJobs> recruiterJobsDtos = jobPostActivityRepository.getRecruiterJobs(recruiter);
+        List<RecruiterJobsAccessor> recruiterJobsDtos = jobPostActivityRepository.getRecruiterJobs(recruiter);
         List<RecruiterJobsDto> recruiterJobsDtoList = new ArrayList<>();
-        for (IRecruiterJobs rec : recruiterJobsDtos) {
+        for (RecruiterJobsAccessor rec : recruiterJobsDtos) {
             JobLocation loc = new JobLocation(rec.getLocationId(), rec.getCity(), rec.getProvince(), rec.getCountry());
             JobCompany comp = new JobCompany(rec.getCompanyId(), rec.getName(), "");
-            recruiterJobsDtoList.add(new RecruiterJobsDto(rec.getTotalCandidates(), rec.getJob_post_id(), rec.getJob_title(), loc, comp));
+            recruiterJobsDtoList.add(new RecruiterJobsDto(rec.getTotalCandidates(), rec.getJobPostId(), rec.getJobTitle(), loc, comp));
         }
         return recruiterJobsDtoList;
     }

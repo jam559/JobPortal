@@ -20,7 +20,7 @@ public class JobLocation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String city;
-    private String country;
     private String province;
+    private String country;
 
 }

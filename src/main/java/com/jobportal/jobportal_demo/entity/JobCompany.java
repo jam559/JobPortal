@@ -19,11 +19,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table
 public class JobCompany {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String logo;
     private String name;
-
+    private String logo;
 }

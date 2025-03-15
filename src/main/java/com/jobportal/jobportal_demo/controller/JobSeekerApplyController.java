@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import com.jobportal.jobportal_demo.entity.JobPostActivity;
 import com.jobportal.jobportal_demo.service.JobPostActivityService;
 import com.jobportal.jobportal_demo.service.UsersService;

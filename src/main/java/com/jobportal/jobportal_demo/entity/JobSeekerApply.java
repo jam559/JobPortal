@@ -1,10 +1,7 @@
 package com.jobportal.jobportal_demo.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,16 +10,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"userId", "job"})
-})
-public class JobSeekerApply implements Serializable {
+@Table
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class JobSeekerApply{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -37,15 +37,4 @@ public class JobSeekerApply implements Serializable {
     private Date applyDate;
 
     private String coverLetter;
-
-    @Override
-    public String toString() {
-        return "JobSeekerApply{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", job=" + job +
-                ", applyDate=" + applyDate +
-                ", coverLetter='" + coverLetter + '\'' +
-                '}';
-    }
 }

@@ -3,12 +3,13 @@ package com.jobportal.jobportal_demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+// @RequiredArgsConstructor
 public class RecruiterJobsDto {
-
     private Long totalCandidates;
     private Integer jobPostId;
     private String jobTitle;

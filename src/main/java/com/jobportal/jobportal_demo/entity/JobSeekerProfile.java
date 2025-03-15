@@ -1,7 +1,6 @@
 package com.jobportal.jobportal_demo.entity;
 
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +25,6 @@ public class JobSeekerProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userAccountId;
-
     private String city;
     private String country;
     private String employmentType;

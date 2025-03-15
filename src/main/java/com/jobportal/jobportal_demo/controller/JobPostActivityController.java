@@ -50,7 +50,6 @@ public class JobPostActivityController {
     @GetMapping("/dashboard/add")
     public String addJobs(Model model) {
         model.addAttribute("jobPostActivity", new JobPostActivity());
-        // model.addAttribute("user", usersService.getCurrentUserProfile());
         return "add-jobs";
     }
 
@@ -70,7 +69,6 @@ public class JobPostActivityController {
     public String editJob(@PathVariable("id") int id, Model model) {
         JobPostActivity jobPostActivity = jobPostActivityService.getOne(id);
         model.addAttribute("jobPostActivity", jobPostActivity);
-        // model.addAttribute("user", usersService.getCurrentUserProfile());
         return "add-jobs";
     }
 }
