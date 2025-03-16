@@ -43,6 +43,7 @@ public class JobPostActivityController {
                 model.addAttribute("jobPost", recruiterJobs);
             }
         }
+        System.out.println("xxxx");
         model.addAttribute("user", currentUserProfile);
         return "dashboard";
     }
