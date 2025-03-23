@@ -13,6 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jobportal_demo</name>
 	<description>Job portal demo project</description>
+	<packaging>war</packaging>
 	<url/>
 	<licenses>
 		<license/>
