@@ -12,6 +12,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class JobSeekerProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userAccountId;
+    private Integer userAccountId;
     private String city;
     private String country;
     private String employmentType;
@@ -43,4 +44,10 @@ public class JobSeekerProfile {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
     List<Skills> skills;
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePhoto == null || userAccountId == null) return null;
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
+    }
 }

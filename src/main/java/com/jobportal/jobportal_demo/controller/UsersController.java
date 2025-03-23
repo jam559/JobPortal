@@ -18,7 +18,6 @@ import com.jobportal.jobportal_demo.service.UsersTypeService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 
 @Controller
 public class UsersController {
@@ -40,7 +39,6 @@ public class UsersController {
     @PostMapping("/register/new")
     public String userRegistration(Users users) {
         usersService.addNew(users);
-        // return "redirect:/login/";
         return "redirect:/dashboard/";
     }
 

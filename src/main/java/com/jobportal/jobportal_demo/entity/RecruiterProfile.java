@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class RecruiterProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userAccountId;
+    private Integer userAccountId;
     private String city;
     private String company;
     private String country;

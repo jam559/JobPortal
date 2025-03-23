@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-// @RequiredArgsConstructor
 public class RecruiterJobsDto {
     private Long totalCandidates;
     private Integer jobPostId;

@@ -14,7 +14,6 @@ public class FileUploadUtil {
     public static void saveFile(String uploadDir, String filename, MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
-            System.out.println("photos path is created!");
             Files.createDirectories(uploadPath);
         }
         try {

@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService{
 
+    @Autowired
     private final UsersRepository usersRepository;
         
     @Override

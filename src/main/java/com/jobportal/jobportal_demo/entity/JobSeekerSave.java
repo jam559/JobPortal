@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobSeekerSave{
+public class JobSeekerSave {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -32,3 +32,5 @@ public class JobSeekerSave{
     private JobPostActivity job;
 
 }
+
+

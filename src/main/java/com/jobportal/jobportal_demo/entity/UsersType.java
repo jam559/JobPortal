@@ -25,5 +25,5 @@ public class UsersType {
 
     @OneToMany(targetEntity = Users.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
     List<Users> users;
-    
+
 }
