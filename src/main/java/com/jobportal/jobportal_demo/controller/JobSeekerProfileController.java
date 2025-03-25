@@ -21,7 +21,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +34,6 @@ import com.jobportal.jobportal_demo.util.FileUploadUtil;
 import org.springframework.core.io.Resource;
 
 @Controller
-@RequestMapping("/job-seeker-profile")
 public class JobSeekerProfileController {
 
     @Autowired
@@ -44,7 +42,7 @@ public class JobSeekerProfileController {
     @Autowired
     private UsersRepository usersRepository;
 
-    @GetMapping("/")
+    @GetMapping("/job-seeker-profile/")
     public String jobSeekerProfile(Model model) {
         JobSeekerProfile jobSeekerProfile = new JobSeekerProfile();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -71,7 +69,7 @@ public class JobSeekerProfileController {
         return "job-seeker-profile";
     }
 
-    @PostMapping("/addNew")
+    @PostMapping("/job-seeker-profile/addNew")
     public String addNew(JobSeekerProfile jobSeekerProfile,
             @RequestParam("image") MultipartFile image,
             @RequestParam("pdf") MultipartFile pdf,
@@ -110,7 +108,7 @@ public class JobSeekerProfileController {
             jobSeekerProfile.setResume(resumeName);
         }
 
-        JobSeekerProfile seekerProfile = jobSeekerProfileService.addNew(jobSeekerProfile);
+        jobSeekerProfileService.addNew(jobSeekerProfile);
 
         try {
             String uploadDir = "photos/candidate/" + jobSeekerProfile.getUserAccountId();
@@ -127,15 +125,14 @@ public class JobSeekerProfileController {
         return "redirect:/dashboard/";
     }
 
-    @GetMapping("/{id}")
-    public String candidateProfile(@PathVariable("id") int id, Model model) {
-
+    @GetMapping("/job-seeker-profile/{id}")
+    public String candidateProfile(@PathVariable("id") Integer id, Model model) {
         Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getOne(id);
         model.addAttribute("profile", seekerProfile.get());
         return "job-seeker-profile";
     }
 
-    @GetMapping("/downloadResume")
+    @GetMapping("/job-seeker-profile/downloadResume")
     public ResponseEntity<?> downloadResume(@RequestParam(value = "fileName") String fileName,
             @RequestParam(value = "userID") String userId) {
 
