@@ -29,6 +29,7 @@ import com.jobportal.jobportal_demo.entity.Skills;
 import com.jobportal.jobportal_demo.entity.Users;
 import com.jobportal.jobportal_demo.repository.UsersRepository;
 import com.jobportal.jobportal_demo.service.JobSeekerProfileService;
+import com.jobportal.jobportal_demo.service.KafkaProducerService;
 import com.jobportal.jobportal_demo.util.FileDownloadUtil;
 import com.jobportal.jobportal_demo.util.FileUploadUtil;
 import org.springframework.core.io.Resource;
@@ -41,6 +42,9 @@ public class JobSeekerProfileController {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
 
     @GetMapping("/job-seeker-profile/")
     public String jobSeekerProfile(Model model) {
@@ -66,6 +70,7 @@ public class JobSeekerProfileController {
             model.addAttribute("skills", skills);
             model.addAttribute("profile", jobSeekerProfile);
         }
+        kafkaProducerService.sendMessage("kafka message sent successfully");
         return "job-seeker-profile";
     }
 
