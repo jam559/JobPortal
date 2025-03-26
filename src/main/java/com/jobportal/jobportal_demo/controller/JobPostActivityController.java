@@ -22,13 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jobportal.jobportal_demo.entity.JobPostActivity;
 import com.jobportal.jobportal_demo.entity.JobSeekerApply;
 import com.jobportal.jobportal_demo.entity.JobSeekerProfile;
-import com.jobportal.jobportal_demo.entity.JobSeekerSave;
 import com.jobportal.jobportal_demo.entity.RecruiterJobsDto;
 import com.jobportal.jobportal_demo.entity.RecruiterProfile;
 import com.jobportal.jobportal_demo.entity.Users;
 import com.jobportal.jobportal_demo.service.JobPostActivityService;
 import com.jobportal.jobportal_demo.service.JobSeekerApplyService;
-// import com.jobportal.jobportal_demo.service.JobSeekerSaveService;
 import com.jobportal.jobportal_demo.service.UsersService;
 
 @Controller
@@ -42,9 +40,6 @@ public class JobPostActivityController {
 
     @Autowired
     JobSeekerApplyService jobSeekerApplyService;
-
-    // @Autowired
-    // JobSeekerSaveService jobSeekerSaveService;
 
     @GetMapping("/dashboard/")
     public String searchJobs(Model model,
@@ -63,12 +58,12 @@ public class JobPostActivityController {
     ) {
 
         model.addAttribute("partTime", Objects.equals(partTime, "Part-Time"));
-        model.addAttribute("fullTime", Objects.equals(partTime, "Full-Time"));
-        model.addAttribute("freelance", Objects.equals(partTime, "Freelance"));
+        model.addAttribute("fullTime", Objects.equals(fullTime, "Full-Time"));
+        model.addAttribute("freelance", Objects.equals(freelance, "Freelance"));
 
-        model.addAttribute("remoteOnly", Objects.equals(partTime, "Remote-Only"));
-        model.addAttribute("officeOnly", Objects.equals(partTime, "Office-Only"));
-        model.addAttribute("partialRemote", Objects.equals(partTime, "Partial-Remote"));
+        model.addAttribute("remoteOnly", Objects.equals(remoteOnly, "Remote-Only"));
+        model.addAttribute("officeOnly", Objects.equals(officeOnly, "Office-Only"));
+        model.addAttribute("partialRemote", Objects.equals(partialRemote, "Partial-Remote"));
 
         model.addAttribute("today", today);
         model.addAttribute("days7", days7);
@@ -125,14 +120,9 @@ public class JobPostActivityController {
                 model.addAttribute("jobPost", recruiterJobs);
             } else {
                 List<JobSeekerApply> jobSeekerApplyList = jobSeekerApplyService.getCandidatesJobs((JobSeekerProfile) currentUserProfile);
-                // List<JobSeekerSave> jobSeekerSaveList = jobSeekerSaveService.getCandidatesJob((JobSeekerProfile) currentUserProfile);
-
                 boolean exist;
-                // boolean saved;
-
                 for (JobPostActivity jobActivity : jobPost) {
                     exist = false;
-                    // saved = false;
                     for (JobSeekerApply jobSeekerApply : jobSeekerApplyList) {
                         if (Objects.equals(jobActivity.getJobPostId(), jobSeekerApply.getJob().getJobPostId())) {
                             jobActivity.setIsActive(true);
@@ -140,30 +130,15 @@ public class JobPostActivityController {
                             break;
                         }
                     }
-
-                    // for (JobSeekerSave jobSeekerSave : jobSeekerSaveList) {
-                    //     if (Objects.equals(jobActivity.getJobPostId(), jobSeekerSave.getJob().getJobPostId())) {
-                    //         jobActivity.setIsSaved(true);
-                    //         saved = true;
-                    //         break;
-                    //     }
-                    // }
-
                     if (!exist) {
                         jobActivity.setIsActive(false);
                     }
-                    // if (!saved) {
-                    //     jobActivity.setIsSaved(false);
-                    // }
-
                     model.addAttribute("jobPost", jobPost);
 
                 }
             }
         }
-
         model.addAttribute("user", currentUserProfile);
-
         return "dashboard";
     }
 
